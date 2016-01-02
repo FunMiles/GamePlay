@@ -566,7 +566,10 @@ ENDIF(CMAKE_SYSTEM_NAME MATCHES "Linux")
 
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
     # using Clang
-    add_definitions(-std=c++11 -stdlib=libc++)
+    add_definitions(-std=c++11)
+    if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+        add_definitions(-stdlib=libc++)
+    endif()
 else()
     add_definitions(-std=c++11)
     add_definitions(-lstdc++)
